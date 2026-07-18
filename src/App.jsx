@@ -4,6 +4,7 @@ import {
   LogOut, Instagram, MapPin, Clock, Phone, Image as ImageIcon,
   Download, Upload, RotateCcw, Eye, EyeOff, Menu, ChevronRight, Tag, Check,
 } from "lucide-react";
+import { loadData, saveData } from "./storage";
 
 /* ------------------------------------------------------------------ */
 /*  Datos por defecto (menú real de Fresas y Crema BAQ)               */
@@ -74,30 +75,6 @@ const DEFAULT_DATA = {
     { id: "pr1", title: "Combo Enamorados", desc: "2 Fresas con crema + 2 bebidas para compartir 💕", price: 32000, oldPrice: 41000, img: "", active: true },
     { id: "pr2", title: "Antojo del día", desc: "Oblea de arequipe y crema a precio especial (solo en tienda)", price: 6000, oldPrice: 7000, img: "", active: true },
   ],
-};
-
-const KEY = "fyc_data_v1";
-
-/* ------------------------------------------------------------------ */
-/*  Persistencia (usa window.storage si existe; si no, memoria)       */
-/* ------------------------------------------------------------------ */
-const store = {
-  async get() {
-    try {
-      if (typeof window !== "undefined" && window.storage) {
-        const r = await window.storage.get(KEY, true);
-        return r ? JSON.parse(r.value) : null;
-      }
-    } catch (e) { /* clave inexistente u otro error → null */ }
-    return null;
-  },
-  async set(val) {
-    try {
-      if (typeof window !== "undefined" && window.storage) {
-        await window.storage.set(KEY, JSON.stringify(val), true);
-      }
-    } catch (e) { console.error("No se pudo guardar:", e); }
-  },
 };
 
 const money = (n) => "$" + Number(n || 0).toLocaleString("es-CO");
@@ -324,14 +301,14 @@ export default function App() {
 
   useEffect(() => {
     (async () => {
-      const saved = await store.get();
+      const saved = await loadData();
       if (saved) setData(saved);
-      else store.set(DEFAULT_DATA);
+      else saveData(DEFAULT_DATA);
       setLoaded(true);
     })();
   }, []);
 
-  const persist = (next) => { setData(next); store.set(next); };
+  const persist = (next) => { setData(next); saveData(next); };
   const flash = (m) => { setToast(m); setTimeout(() => setToast(""), 1800); };
 
   const addToCart = (id) => { setCart((c) => ({ ...c, [id]: (c[id] || 0) + 1 })); flash("Agregado al pedido"); };
