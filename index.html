@@ -4,70 +4,10 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>🍓</text></svg>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Fresas y Crema - Las mejores fresas con crema de Colombia" />
-    <meta name="keywords" content="fresas, crema, postres, Barranquilla, Bucaramanga" />
-    <meta name="theme-color" content="#d4537e" />
-    
-    <title>🍓 Fresas y Crema - Postres Deliciosos</title>
-    
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-          sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        background: #f5f5f5;
-      }
-      
-      #root {
-        width: 100%;
-        min-height: 100vh;
-      }
-      
-      .loading-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        background: linear-gradient(135deg, #d4537e 0%, #993556 100%);
-        color: white;
-        flex-direction: column;
-        gap: 1rem;
-      }
-      
-      .loading-spinner {
-        width: 40px;
-        height: 40px;
-        border: 4px solid rgba(255, 255, 255, 0.3);
-        border-top: 4px solid white;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-      }
-      
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-      
-      .loading-text {
-        font-size: 18px;
-      }
-    </style>
+    <title>🍓 Fresas y Crema</title>
   </head>
   <body>
-    <div id="root">
-      <div class="loading-container">
-        <div class="loading-spinner"></div>
-        <div class="loading-text">Cargando 🍓 Fresas y Crema...</div>
-      </div>
-    </div>
-    <script type="module" src="/src/main.jsx"></script>
+    <div id="root"></div>
+    <script type="module" src="/main.jsx"></script>
   </body>
 </html>
